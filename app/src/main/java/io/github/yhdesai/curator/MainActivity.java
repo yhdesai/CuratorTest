@@ -23,10 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-TextView mConditionTextView;
+TextView mNameTextView;
+TextView mURLTextView;
 
 DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mCategoryRef = mRootRef.child("Category");
+    DatabaseReference mCategoryRef = mRootRef.child("Video1");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,9 @@ DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mConditionTextView = (TextView)findViewById(R.id.textViewCondition);
+        mNameTextView = (TextView)findViewById(R.id.nameTextView);
+        mURLTextView = (TextView)findViewById(R.id.urlTextView);
+
 
     }
 
@@ -64,8 +67,8 @@ DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
         mCategoryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String text = dataSnapshot.getValue(String.class);
-                mConditionTextView.setText(text);
+                String name = dataSnapshot.getValue(String.class);
+                mNameTextView.setText(name);
             }
 
             @Override
