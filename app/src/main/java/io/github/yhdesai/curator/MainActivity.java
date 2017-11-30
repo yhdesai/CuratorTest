@@ -27,7 +27,7 @@ TextView mNameTextView;
 TextView mURLTextView;
 
 DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mCategoryRef = mRootRef.child("Video1");
+    DatabaseReference mNameRef = mRootRef.child("videos");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +64,14 @@ DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     protected void onStart(){
         super.onStart();
 
-        mCategoryRef.addValueEventListener(new ValueEventListener() {
+        mNameRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.getValue(String.class);
                 mNameTextView.setText(name);
             }
+
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
