@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 TextView mConditionTextView;
 
 DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mConditionRef = mRootRef.child("condition");
+    DatabaseReference mCategoryRef = mRootRef.child("Category");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     protected void onStart(){
         super.onStart();
 
-        mConditionRef.addValueEventListener(new ValueEventListener() {
+        mCategoryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
